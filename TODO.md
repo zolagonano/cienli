@@ -7,3 +7,6 @@ ROT47 cipher [ ]
 Beacon cipher [ ]
 Caesar cipher [ ]
 XOR cipher [ ]
+
+# Other tasks:
+Add README.md file [ ]
