@@ -4,7 +4,7 @@
 - [ ] ROT13 cipher
 - [ ] ROT18 cipher
 - [ ] ROT47 cipher
-- [ ] Beacon cipher
+- [ ] Bacon cipher
 - [ ] Caesar cipher
 - [ ] XOR cipher
 
