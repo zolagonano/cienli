@@ -5,7 +5,7 @@
 - [ ] ROT18 cipher
 - [ ] ROT47 cipher
 - [ ] Bacon cipher
-- [ ] Caesar cipher
+- [x] Caesar cipher
 - [ ] XOR cipher
 
 # Other tasks:
