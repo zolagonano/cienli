@@ -50,6 +50,6 @@ mod tests {
     fn decipher() {
         let xor = Xor::new("jp14N");
 
-        assert_eq!(String::from("VMMN8"), xor.encipher("<=|zv"));
+        assert_eq!(String::from("VMMN8"), xor.decipher("<=|zv"));
     }
 }
