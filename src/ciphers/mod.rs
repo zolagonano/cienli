@@ -1,3 +1,4 @@
+pub mod bacon;
 pub mod caesar;
-pub mod xor;
 pub mod rot;
+pub mod xor;
