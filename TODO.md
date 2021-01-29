@@ -1,5 +1,5 @@
 # The list of ciphers must add:
-- [ ] Vigenère cipher
+- [x] Vigenère cipher
 - [x] ROT5 cipher
 - [x] ROT13 cipher
 - [x] ROT18 cipher
