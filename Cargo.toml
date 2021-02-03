@@ -7,7 +7,7 @@ description = "CiEnLi is a library of historical ciphers implemented in rust"
 homepage = "https://github.com/zolagonano/cienli.git"
 repository = "https://github.com/zolagonano/cienli.git"
 keywords = ["cipher", "crypto", "encryption", "caesar"]
-categories = ["cipher", "algorithms", "cryptography", "encryption"]
+categories = ["algorithms", "cryptography"]
 license = "MIT"
 readme = "README.md"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
