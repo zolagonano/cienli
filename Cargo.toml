@@ -3,8 +3,17 @@ name = "cienli"
 version = "0.1.0"
 authors = ["Zola Gonano <zolagonano@protonmail.com>"]
 edition = "2018"
-
+description = "CiEnLi is a library of historical ciphers implemented in rust"
+homepage = "https://github.com/zolagonano/cienli.git"
+repository = "https://github.com/zolagonano/cienli.git"
+keywords = ["cipher", "crypto", "encryption", "caesar", "vigenere", "rot13", "baconian"]
+categories = ["cipher", "algorithms", "cryptography", "encryption"]
+license = "MIT"
+readme = "README.md"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "cienli"
 
 [dependencies]
 regex = "1.4.2"
