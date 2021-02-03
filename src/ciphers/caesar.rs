@@ -1,8 +1,22 @@
+/// Caesar Cipher
+///
+/// The struct is generated through the new() function.
+///
 pub struct Caesar {
     rotation: u8,
 }
 
 impl Caesar {
+    /// Initialize a caesar cipher with a rotation.
+    ///
+    /// # Examples:
+    /// ```
+    /// use cienli::ciphers::caesar::Caesar;
+    /// let caesar = Caesar::new(5).unwrap();
+    /// ```
+    ///
+    /// # Errors:
+    /// The rotation must be in range 1 and 26.
     pub fn new(rotation: u8) -> Result<Caesar, &'static str> {
         if rotation >= 1 && rotation <= 26 {
             Ok(Caesar { rotation: rotation })
@@ -11,10 +25,31 @@ impl Caesar {
         }
     }
 
+    /// Enciphers a message with the caesar cipher.
+    ///
+    /// # Examples:
+    ///
+    /// - Encipher with five times rotation:
+    /// ```
+    /// use cienli::ciphers::caesar::Caesar;
+    /// let caesar = Caesar::new(5).unwrap();
+    ///
+    /// assert_eq!("Mjqqt, Ymnx Nx F Yjxy", caesar.encipher("Hello, This Is A Test"));
+    /// ```
     pub fn encipher(&self, message: &str) -> String {
         Caesar::shift(message, self.rotation)
     }
 
+    /// Deciphers a cipher with the caesar cipher.
+    ///
+    /// # Examples:
+    /// - Decipher with five times rotation:
+    /// ```
+    /// use cienli::ciphers::caesar::Caesar;
+    /// let caesar = Caesar::new(5).unwrap();
+    ///
+    /// assert_eq!("Hello, This Is A Test", caesar.decipher("Mjqqt, Ymnx Nx F Yjxy"));
+    /// ```
     pub fn decipher(&self, message: &str) -> String {
         Caesar::shift(message, 26 - self.rotation)
     }
@@ -40,7 +75,7 @@ mod tests {
         let caesar = Caesar::new(5).unwrap();
 
         assert_eq!(
-            String::from("Mjqqt, Ymnx Nx F Yjxy"),
+            "Mjqqt, Ymnx Nx F Yjxy",
             caesar.encipher("Hello, This Is A Test")
         );
     }
@@ -50,7 +85,7 @@ mod tests {
         let caesar = Caesar::new(5).unwrap();
 
         assert_eq!(
-            String::from("Hello, This Is A Test"),
+            "Hello, This Is A Test",
             caesar.decipher("Mjqqt, Ymnx Nx F Yjxy")
         );
     }
