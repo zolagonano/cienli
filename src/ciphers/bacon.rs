@@ -1,10 +1,22 @@
 use regex::{Captures, Regex};
 
+/// Bacon Cipher
+///
+/// The struct is generated througt new() funtion.
 pub struct Bacon {
     letters: (char, char),
 }
 
 impl Bacon {
+    /// Initialize a bacon cipher with a tuple of letters.
+    ///
+    /// # Examples:
+    ///
+    /// ```
+    /// use cienli::ciphers::bacon::Bacon;
+    ///
+    /// let bacon = Bacon::new(('a', 'b')).unwrap();
+    /// ```
     pub fn new(letters: (char, char)) -> Result<Bacon, &'static str> {
         if letters.0 == letters.1 {
             return Err("Error: Letters must be different from each other!!");
@@ -12,6 +24,31 @@ impl Bacon {
         Ok(Bacon { letters: letters })
     }
 
+    /// Enciphers a message with the bacon cipher.
+    ///
+    /// # Examples:
+    ///
+    /// - Encipher with 'a' and 'b' letters:
+    /// ```
+    /// use cienli::ciphers::bacon::Bacon;
+    /// let bacon = Bacon::new(('a','b')).unwrap();
+    ///
+    /// assert_eq!(
+    ///     "aabbbaabaaababbababbabbba aababbaaababaaaaabaaabbabaaabb",
+    ///     bacon.encipher("Hello Friend")
+    /// );
+    /// ```
+    ///
+    /// - Encipher with '+' and '=' letters:
+    /// ```
+    /// use cienli::ciphers::bacon::Bacon;
+    /// let bacon = Bacon::new(('+', '=')).unwrap();
+    ///
+    /// assert_eq!(
+    ///     "++===++=+++=+==+=+==+===+ ++=+==+++=+=+++++=+++==+=+++==",
+    ///     bacon.encipher("Hello Friend")
+    /// );
+    /// ```
     pub fn encipher(&self, message: &str) -> String {
         message
             .to_ascii_uppercase()
@@ -25,6 +62,32 @@ impl Bacon {
             .collect::<String>()
     }
 
+    /// Deciphers a cipher with the bacon cipher.
+    ///
+    /// # Examples:
+    ///
+    /// - Decipher with 'a' and 'b' letters:
+    /// ```
+    /// use cienli::ciphers::bacon::Bacon;
+    /// let bacon = Bacon::new(('a', 'b')).unwrap();
+    ///
+    /// assert_eq!(
+    /// "HELLO FRIEND",
+    /// bacon.decipher("aabbbaabaaababbababbabbba aababbaaababaaaaabaaabbabaaabb")
+    /// );
+    /// ```
+    ///
+    /// - Decipher with '+' and '=' letters:
+    ///
+    /// ```
+    /// use cienli::ciphers::bacon::Bacon;
+    /// let bacon = Bacon::new(('+', '=')).unwrap();
+    ///
+    /// assert_eq!(
+    /// "HELLO FRIEND",
+    /// bacon.decipher("++===++=+++=+==+=+==+===+ ++=+==+++=+=+++++=+++==+=+++==")
+    /// );
+    /// ```
     pub fn decipher(&self, message: &str) -> String {
         let binary_message = message
             .replace(&self.letters.0.to_string(), "0")
@@ -49,7 +112,7 @@ mod tests {
         let bacon = Bacon::new(('a', 'b')).unwrap();
 
         assert_eq!(
-            String::from("aabbbaabaaababbababbabbba aababbaaababaaaaabaaabbabaaabb"),
+            "aabbbaabaaababbababbabbba aababbaaababaaaaabaaabbabaaabb",
             bacon.encipher("Hello Friend")
         );
     }
@@ -59,7 +122,7 @@ mod tests {
         let bacon = Bacon::new(('a', 'b')).unwrap();
 
         assert_eq!(
-            String::from("HELLO FRIEND"),
+            "HELLO FRIEND",
             bacon.decipher("aabbbaabaaababbababbabbba aababbaaababaaaaabaaabbabaaabb")
         );
     }
@@ -69,7 +132,7 @@ mod tests {
         let bacon = Bacon::new(('+', '=')).unwrap();
 
         assert_eq!(
-            String::from("++===++=+++=+==+=+==+===+ ++=+==+++=+=+++++=+++==+=+++=="),
+            "++===++=+++=+==+=+==+===+ ++=+==+++=+=+++++=+++==+=+++==",
             bacon.encipher("Hello Friend")
         );
     }
@@ -79,7 +142,7 @@ mod tests {
         let bacon = Bacon::new(('+', '=')).unwrap();
 
         assert_eq!(
-            String::from("HELLO FRIEND"),
+            "HELLO FRIEND",
             bacon.decipher("++===++=+++=+==+=+==+===+ ++=+==+++=+=+++++=+++==+=+++==")
         );
     }
