@@ -1,7 +1,8 @@
 # CiEnLi
 
-CiEnLi is a library of historical ciphers implemented in (rust)[https://www.rust-lang.org/].
-**WARNING**: I just learned (rust)[https://www.rust-lang.org/] and I made this as my first project. So it may have lots of bugs.
+CiEnLi is a library of historical ciphers implemented in [rust](https://www.rust-lang.org/).
+
+**WARNING**: I just learned [rust](https://www.rust-lang.org/) and I made this as my first project. So it may have lots of bugs.
 
 ## The list of ciphers must add:
 - [x] Vigenère
