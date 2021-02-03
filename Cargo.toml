@@ -10,7 +10,7 @@ keywords = ["cipher", "crypto", "encryption", "caesar"]
 categories = ["algorithms", "cryptography"]
 license = "MIT"
 readme = "README.md"
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+documentation = "https://docs.rs/cienli/"
 
 [lib]
 name = "cienli"
