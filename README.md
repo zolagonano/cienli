@@ -13,6 +13,7 @@ CiEnLi is a library of historical ciphers implemented in [rust](https://www.rust
 - [x] Bacon
 - [x] Caesar
 - [x] XOR
+- [x] Atbash
 - [ ] Playfair
 - [ ] Rail-fence
 - [ ] Fractionated Morse
