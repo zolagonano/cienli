@@ -15,6 +15,7 @@ CiEnLi is a library of historical ciphers implemented in [rust](https://www.rust
 - [x] XOR
 - [x] Atbash
 - [x] Affine
+- [x] Scytale
 - [ ] Playfair
 - [ ] Rail-fence
 - [ ] Fractionated Morse
@@ -27,7 +28,6 @@ CiEnLi is a library of historical ciphers implemented in [rust](https://www.rust
 - [ ] Homophonic
 - [ ] Four-Square
 - [ ] Autokey
-- [ ] Scytale
 - [ ] Hill
 - [ ] Columnar Transposition
 
