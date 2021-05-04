@@ -25,14 +25,28 @@ impl Vigenere<'_> {
     /// # Examples:
     /// ```
     /// use cienli::ciphers::vigenere::Vigenere;
-    /// let vigenere = Vigenere::new("ABCDE");
+    /// let vigenere = Vigenere::new("ABcdE");
     ///
-    /// assert_eq!("QXGUX", vigenere.encipher("QWERT"));
+    /// assert_eq!("Qxgux :)", vigenere.encipher("Qwert :)"));
     /// ```
     pub fn encipher(&self, message: &str) -> String {
-        let key = key_gen(self.key, message.len()).unwrap();
+        let key = key_gen(&self.key.to_uppercase(), message.len())
+            .unwrap()
+            .as_bytes()
+            .to_owned();
 
-        Vigenere::vigenere_engine(message, &key, true)
+        let message = message.as_bytes();
+
+        let mut result: String = String::new();
+
+        for indx in 0..message.len() {
+            result.push(match message[indx] as char {
+                'A'..='Z' => (((key[indx] + message[indx]) % 26) + 65) as char,
+                'a'..='z' => ((((key[indx] - 32) + message[indx]) % 26) + 97) as char,
+                _ => message[indx] as char,
+            });
+        }
+        result
     }
 
     /// Deciphers a cipher with the vigenere cipher.
@@ -40,25 +54,24 @@ impl Vigenere<'_> {
     /// # Examples:
     /// ```
     /// use cienli::ciphers::vigenere::Vigenere;
-    /// let vigenere = Vigenere::new("ABCDE");
+    /// let vigenere = Vigenere::new("ABcdE");
     ///
-    /// assert_eq!("QWERT", vigenere.decipher("QXGUX"));
+    /// assert_eq!("Qwert :)", vigenere.decipher("Qxgux :)"));
     pub fn decipher(&self, message: &str) -> String {
-        let key = key_gen(self.key, message.len()).unwrap();
+        let key = key_gen(&self.key.to_uppercase(), message.len())
+            .unwrap()
+            .as_bytes()
+            .to_owned();
 
-        Vigenere::vigenere_engine(message, &key, false)
-    }
-
-    fn vigenere_engine(message: &str, key: &str, encipher: bool) -> String {
-        let mut result: String = String::new();
-
-        let key = key.as_bytes();
         let message = message.as_bytes();
 
+        let mut result: String = String::new();
+
         for indx in 0..message.len() {
-            result.push(match encipher {
-                true => (((key[indx] + message[indx]) % 26) + 65) as char,
-                false => (((26 + message[indx] - key[indx]) % 26) + 65) as char,
+            result.push(match message[indx] as char {
+                'A'..='Z' => (((26 + message[indx] - key[indx]) % 26) + 65) as char,
+                'a'..='z' => (((26 + message[indx] - (key[indx] + 32)) % 26) + 97) as char,
+                _ => message[indx] as char,
             });
         }
         result
@@ -73,13 +86,13 @@ mod tests {
     fn encipher_test() {
         let v = Vigenere::new("ABCDE");
 
-        assert_eq!("QXGUX", v.encipher("QWERT"));
+        assert_eq!("QXGUX :)", v.encipher("QWERT :)"));
     }
 
     #[test]
     fn decipher_test() {
         let v = Vigenere::new("ABCDE");
 
-        assert_eq!("QWERT", v.decipher("QXGUX"));
+        assert_eq!("Qwert :)", v.decipher("Qxgux :)"));
     }
 }
