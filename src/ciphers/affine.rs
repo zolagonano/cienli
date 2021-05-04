@@ -1,11 +1,39 @@
 use num_integer::Integer;
 
+/// Affine Cipher
+///
+/// The struct is generated through the new() function
+///
 pub struct Affine {
     alpha: u16,
     beta: u16,
 }
 
 impl Affine {
+    /// Initialize a affine cipher with a key
+    ///
+    /// # Examples:
+    /// - Initialization with a valid key:
+    /// ```
+    /// use cienli::ciphers::affine::Affine;
+    /// let affine = Affine::new((5, 2));
+    /// assert!(affine.is_ok());
+    /// ```
+    ///
+    /// - Initialization with a non-coprime key:
+    /// ```
+    /// use cienli::ciphers::affine::Affine;
+    /// let affine = Affine::new((10, 2));
+    /// assert!(affine.is_err());
+    /// ```
+    /// this example will
+    ///
+    /// - Initialization with a big key:
+    /// ```
+    /// use cienli::ciphers::affine::Affine;
+    /// let affine = Affine::new((27, 2));
+    /// assert!(affine.is_err());
+    /// ```
     pub fn new(key: (u16, u16)) -> Result<Affine, &'static str> {
         let is_key_valid = Affine::key_checker(key);
 
@@ -18,6 +46,15 @@ impl Affine {
         }
     }
 
+    /// Enciphers a message with the affine cipher.
+    ///
+    /// # Example:
+    /// ```
+    /// use cienli::ciphers::affine::Affine;
+    /// let affine = Affine::new((5, 2)).unwrap();
+    ///
+    /// assert_eq!("Lwffu :)", affine.encipher("Hello :)"));
+    /// ```
     pub fn encipher(&self, message: &str) -> String {
         message
             .chars()
@@ -33,6 +70,15 @@ impl Affine {
             .collect()
     }
 
+    /// Deciphers a message with the affine cipher.
+    ///
+    /// # Example:
+    /// ```
+    /// use cienli::ciphers::affine::Affine;
+    /// let affine = Affine::new((5, 2)).unwrap();
+    ///
+    /// assert_eq!("Hello :)", affine.decipher("Lwffu :)"));
+    /// ```
     pub fn decipher(&self, message: &str) -> String {
         let mut alpha_inv = 0;
         while (self.alpha * alpha_inv) % 26 != 1 {
