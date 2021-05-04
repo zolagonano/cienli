@@ -1,8 +1,29 @@
+/// Scytale Cipher
+///
+/// the struct is generated through the new() function.
+///
 pub struct Scytale {
     key: usize,
 }
 
 impl Scytale {
+    /// Initialize a scytale cipher with a key.
+    ///
+    /// # Examples:
+    /// - Initialization with valid key:
+    /// ```
+    /// use cienli::ciphers::scytale::Scytale;
+    /// let scytale = Scytale::new(3);
+    ///
+    /// assert!(scytale.is_ok());
+    /// ```
+    /// - Initialization with a zero key:
+    /// ```
+    /// use cienli::ciphers::scytale::Scytale;
+    /// let scytale = Scytale::new(0);
+    ///
+    /// assert!(scytale.is_err());
+    /// ```
     pub fn new(key: usize) -> Result<Scytale, &'static str> {
         match key {
             0 => Err("Key cannot be zero"),
@@ -10,6 +31,15 @@ impl Scytale {
         }
     }
 
+    /// Enciphers a message with the scytale cipher.
+    ///
+    /// # Example:
+    /// ```
+    /// use cienli::ciphers::scytale::Scytale;
+    /// let scytale = Scytale::new(3).unwrap();
+    ///
+    /// assert_eq!("Hl:eo)l ", scytale.encipher("Hello :)"))
+    /// ```
     pub fn encipher(&self, message: &str) -> String {
         if self.key >= message.chars().count() {
             return message.to_string();
@@ -25,6 +55,15 @@ impl Scytale {
             .to_string()
     }
 
+    /// Deciphers a message with the scytale cipher.
+    ///
+    /// # Example:
+    /// ```
+    /// use cienli::ciphers::scytale::Scytale;
+    /// let scytale = Scytale::new(3).unwrap();
+    ///
+    /// assert_eq!("Hello :)", scytale.decipher("Hl:eo)l "));
+    /// ```
     pub fn decipher(&self, cipher: &str) -> String {
         if self.key >= cipher.chars().count() || self.key == 1 {
             return cipher.to_string();
