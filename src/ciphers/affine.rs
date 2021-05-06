@@ -38,11 +38,11 @@ impl Affine {
         let is_key_valid = Affine::key_checker(key);
 
         match is_key_valid {
-            true => Ok(Affine {
+            Ok(_v) => Ok(Affine {
                 alpha: key.0,
                 beta: key.1,
             }),
-            false => Err("there is a problem with the key"),
+            Err(v) => Err(v),
         }
     }
 
@@ -99,15 +99,15 @@ impl Affine {
             .collect()
     }
 
-    fn key_checker(key: (u16, u16)) -> bool {
+    fn key_checker(key: (u16, u16)) -> Result<(), &'static str> {
         if (key.0 >= 1 && key.0 <= 26) && key.1 <= 26 {
             if key.0.gcd(&26) == 1 {
-                true
+                Ok(())
             } else {
-                false
+                Err("The alpha is not co-prime with 26")
             }
         } else {
-            false
+            Err("The is greater than 26")
         }
     }
 }
