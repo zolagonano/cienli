@@ -1,5 +1,10 @@
 # CiEnLi
 
+![b](https://img.shields.io/crates/l/cienli)
+![b](https://img.shields.io/crates/d/cienli)
+![b](https://img.shields.io/crates/v/cienli)
+![b](https://img.shields.io/docsrs/cienli)
+
 CiEnLi is a library of historical ciphers implemented in [rust](https://www.rust-lang.org/).
 
 ## The list of ciphers must add:
