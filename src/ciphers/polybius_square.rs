@@ -5,15 +5,46 @@ const TABLE: [[char; 5]; 5] = [
     ['Q', 'R', 'S', 'T', 'U'],
     ['V', 'W', 'X', 'Y', 'Z'],
 ]; // Removed letter: I
+
+/// Polybius square cipher
+///
+/// The struct is generated through the new() function
+///
 pub struct PolybiusSquare<'a> {
     message: &'a str,
 }
 
 impl PolybiusSquare<'_> {
+    /// Initialize a polybius square cipher with a cipher/plain text
+    ///
+    /// # Examples:
+    /// - Initialization with a plaintext:
+    /// ```
+    /// use cienli::ciphers::polybius_square::PolybiusSquare;
+    ///
+    /// let polybius = PolybiusSquare::new("Hello World :)");
+    /// ```
+    ///
+    /// - Initialization with a ciphertext:
+    /// ```
+    /// use cienli::ciphers::polybius_square::PolybiusSquare;
+    ///
+    /// let polybius = PolybiusSquare::new("23153131345234423114");
+    /// ```
+    ///
     pub fn new(message: &str) -> PolybiusSquare {
         PolybiusSquare { message: message }
     }
 
+    /// Enciphers a message with the polybius square cipher:
+    ///
+    /// # Example:
+    /// ```
+    /// use cienli::ciphers::polybius_square::PolybiusSquare;
+    ///
+    /// let polybius = PolybiusSquare::new("Hello World :)");
+    /// assert_eq!("23153131345234423114", polybius.encipher());
+    /// ```
     pub fn encipher(&self) -> String {
         self.message
             .to_ascii_uppercase()
@@ -41,6 +72,18 @@ impl PolybiusSquare<'_> {
             .collect()
     }
 
+    /// Deciphers a ciphertext with the polybius square cipher:
+    ///
+    /// # Example:
+    /// ```
+    /// use cienli::ciphers::polybius_square::PolybiusSquare;
+    ///
+    /// let polybius = PolybiusSquare::new("23153131345234423114");
+    /// assert_eq!("HELLOWORLD", polybius.decipher().unwrap());
+    /// ```
+    ///
+    /// # Error:
+    /// If you try to decipher a non-numeric text you will get an error.
     pub fn decipher(&self) -> Result<String, &'static str> {
         if self.message.len() % 2 != 0 {
             return Err("1 column is missing");
