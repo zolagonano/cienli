@@ -14,10 +14,10 @@ CiEnLi is a library of historical ciphers implemented in [rust](https://www.rust
 - [x] Atbash
 - [x] Affine
 - [x] Scytale
+- [x] Polybius Square
 - [ ] Playfair
 - [ ] Rail-fence
 - [ ] Fractionated Morse
-- [ ] Polybius Square
 - [ ] Trifid
 - [ ] Porta
 - [ ] ADFGVX
