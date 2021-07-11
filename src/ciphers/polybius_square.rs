@@ -16,10 +16,26 @@ impl PolybiusSquare<'_> {
 
     pub fn encipher(&self) -> String {
         self.message
+            .to_ascii_uppercase()
             .chars()
             .map(|character| match character {
-                'A'..='Z' => PolybiusSquare::encipher_engine(65, 'K', 'J', character),
-                'a'..='z' => PolybiusSquare::encipher_engine(97, 'k', 'j', character),
+                'A'..='Z' => {
+                    let mut row = ((character as u8 - 65) / 5) + 1;
+                    let mut col = ((character as u8 - 65) % 5) + 1;
+
+                    if character == 'K' {
+                        row = row - 1;
+                        col = 5 - col + 1;
+                    } else if character >= 'J' {
+                        if col == 1 {
+                            col = 6;
+                            row = row - 1;
+                        }
+                        col = col - 1;
+                    }
+
+                    format!("{}{}", row, col)
+                }
                 _ => String::from(""),
             })
             .collect()
@@ -52,24 +68,6 @@ impl PolybiusSquare<'_> {
         }
 
         Ok(result)
-    }
-
-    fn encipher_engine(a: u8, k: char, j: char, character: char) -> String {
-        let mut row = ((character as u8 - a) / 5) + 1;
-        let mut col = ((character as u8 - a) % 5) + 1;
-
-        if character == k {
-            row = row - 1;
-            col = 5 - col + 1;
-        } else if character >= j {
-            if col == 1 {
-                col = 6;
-                row = row - 1;
-            }
-            col = col - 1;
-        }
-
-        format!("{}{}", row, col)
     }
 
     fn is_string_numeric(text: &str) -> bool {
