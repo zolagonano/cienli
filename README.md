@@ -20,7 +20,7 @@ CiEnLi is a library of historical ciphers implemented in [rust](https://www.rust
 - [x] Affine
 - [x] Scytale
 - [x] Polybius Square
-- [x] Hill
+- [ ] Hill
 - [ ] Playfair
 - [ ] Rail-fence
 - [ ] Fractionated Morse
