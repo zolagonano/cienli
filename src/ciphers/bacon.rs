@@ -21,7 +21,7 @@ impl Bacon {
         if letters.0 == letters.1 {
             return Err("Error: Letters must be different from each other!!");
         }
-        Ok(Bacon { letters: letters })
+        Ok(Bacon { letters })
     }
 
     /// Enciphers a message with the bacon cipher.

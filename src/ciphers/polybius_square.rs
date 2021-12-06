@@ -33,7 +33,7 @@ impl PolybiusSquare<'_> {
     /// ```
     ///
     pub fn new(message: &str) -> PolybiusSquare {
-        PolybiusSquare { message: message }
+        PolybiusSquare { message }
     }
 
     /// Enciphers a message with the polybius square cipher:
@@ -55,14 +55,14 @@ impl PolybiusSquare<'_> {
                     let mut col = ((character as u8 - 65) % 5) + 1;
 
                     if character == 'K' {
-                        row = row - 1;
+                        row -= 1;
                         col = 5 - col + 1;
                     } else if character >= 'J' {
                         if col == 1 {
                             col = 6;
-                            row = row - 1;
+                            row -= 1;
                         }
-                        col = col - 1;
+                        col -= 1;
                     }
 
                     format!("{}{}", row, col)

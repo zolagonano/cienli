@@ -17,7 +17,7 @@ impl Xor<'_> {
     /// let xor = Xor::new("VMMN8");
     /// ```
     pub fn new(key: &str) -> Xor {
-        Xor { key: key }
+        Xor { key }
     }
 
     /// Enciphers a message with the xor cipher.
@@ -30,7 +30,7 @@ impl Xor<'_> {
     /// assert_eq!("<=|zv", xor.encipher("jp14N"));
     /// ```
     pub fn encipher(&self, message: &str) -> String {
-        let key = key_gen(&self.key, message.len()).unwrap();
+        let key = key_gen(self.key, message.len()).unwrap();
 
         Xor::xor_engine(message, &key)
     }
@@ -44,7 +44,7 @@ impl Xor<'_> {
     /// assert_eq!("jp14N", xor.decipher("<=|zv"));
     /// ```
     pub fn decipher(&self, cipher: &str) -> String {
-        let key = key_gen(&self.key, cipher.len()).unwrap();
+        let key = key_gen(self.key, cipher.len()).unwrap();
 
         Xor::xor_engine(cipher, &key)
     }

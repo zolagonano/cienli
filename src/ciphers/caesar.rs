@@ -18,8 +18,8 @@ impl Caesar {
     /// # Errors:
     /// The rotation must be in range 1 and 26.
     pub fn new(rotation: u8) -> Result<Caesar, &'static str> {
-        if rotation >= 1 && rotation <= 26 {
-            Ok(Caesar { rotation: rotation })
+        if (1..=26).contains(&rotation) {
+            Ok(Caesar { rotation })
         } else {
             Err("Error: Rotation must be in range 1 and 26!!")
         }

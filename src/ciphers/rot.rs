@@ -24,10 +24,7 @@ impl Rot<'_> {
     /// let rot = Rot::new("• Hello Friend 83110 :) •", RotType::Rot13);
     /// ```
     pub fn new(message: &str, rot_type: RotType) -> Rot {
-        Rot {
-            message: message,
-            rot_type: rot_type,
-        }
+        Rot { message, rot_type }
     }
 
     /// Enciphers a message with the rot cipher.
@@ -51,10 +48,10 @@ impl Rot<'_> {
     /// ```
     pub fn encipher(&self) -> String {
         match self.rot_type {
-            RotType::Rot5 => return Rot::rot5(self.message),
-            RotType::Rot13 => return Rot::rot13(self.message),
-            RotType::Rot18 => return Rot::rot13(&(Rot::rot5(self.message))),
-            RotType::Rot47 => return Rot::rot47(self.message),
+            RotType::Rot5 => Rot::rot5(self.message),
+            RotType::Rot13 => Rot::rot13(self.message),
+            RotType::Rot18 => Rot::rot13(&(Rot::rot5(self.message))),
+            RotType::Rot47 => Rot::rot47(self.message),
         }
     }
 

@@ -27,7 +27,7 @@ impl Scytale {
     pub fn new(key: usize) -> Result<Scytale, &'static str> {
         match key {
             0 => Err("Key cannot be zero"),
-            _ => Ok(Scytale { key: key }),
+            _ => Ok(Scytale { key }),
         }
     }
 
@@ -51,7 +51,7 @@ impl Scytale {
             .iter()
             .flatten()
             .collect::<String>()
-            .trim_end_matches("\0")
+            .trim_end_matches('\0')
             .to_string()
     }
 
@@ -82,7 +82,7 @@ impl Scytale {
                 message.push(column.remove(0));
             }
         }
-        message.trim_end_matches("\0").to_string()
+        message.trim_end_matches('\0').to_string()
     }
 
     fn generate_table(height: usize, message: &str, decipher: bool) -> Vec<Vec<char>> {

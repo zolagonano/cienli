@@ -23,7 +23,7 @@ impl Atbash<'_> {
     /// ```
     ///
     pub fn new(message: &str) -> Atbash {
-        Atbash { message: message }
+        Atbash { message }
     }
 
     /// Enciphers a message with the atbash cipher.

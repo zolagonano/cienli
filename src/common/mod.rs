@@ -1,24 +1,19 @@
 pub fn key_gen(key: &str, message_len: usize) -> Result<String, &'static str> {
     let mut result: String = String::from(key);
 
-    if key.len() <= 0 || message_len <= 0 {
+    if key.is_empty() || message_len == 0 {
         return Err("Error: Key and Message length must be 1 or greater than 1!!");
-    } else {
-        if key.len() == message_len {
-            return Ok(key.to_string());
-        } else {
-            if key.len() > message_len {
-                return Ok(key[..message_len].to_string());
-            } else {
-                if key.len() < message_len {
-                    for left in 0..(message_len - key.len()) {
-                        result.push(key.as_bytes()[left % key.len()] as char);
-                    }
-                }
-            }
+    } else if key.len() == message_len {
+        return Ok(key.to_string());
+    } else if key.len() > message_len {
+        return Ok(key[..message_len].to_string());
+    } else if key.len() < message_len {
+        for left in 0..(message_len - key.len()) {
+            result.push(key.as_bytes()[left % key.len()] as char);
         }
-        Ok(result)
     }
+
+    Ok(result)
 }
 
 #[cfg(test)]

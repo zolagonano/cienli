@@ -17,7 +17,7 @@ impl Vigenere<'_> {
     /// let vigenere = Vigenere::new("ABCDE");
     /// ```
     pub fn new(key: &str) -> Vigenere {
-        Vigenere { key: key }
+        Vigenere { key }
     }
 
     /// Enciphers a message with the vigenere cipher.
