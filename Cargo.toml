@@ -16,5 +16,17 @@ documentation = "https://docs.rs/cienli/"
 name = "cienli"
 
 [dependencies]
-regex = "1.5.4"
-num-integer = "0.1"
+regex = { version = "1.5.4", optional = true}
+num-integer = { version = "0.1", optional = true }
+
+[features]
+affine = ["dep:num-integer"]
+atbash = []
+bacon = ["dep:regex"]
+caesar = []
+polybius_square = []
+rot = []
+scytale = []
+vigenere = []
+xor = []
+default = ["affine", "atbash", "bacon", "caesar", "polybius_square", "rot", "scytale", "vigenere", "xor"]
